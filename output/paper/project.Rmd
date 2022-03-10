@@ -1,1 +1,34 @@
+---
+title: "Write title here"
 
+author: 
+  - Sevnur Kulak
+  - Dongqi Bi
+thanks: "Code and data are available at: https://github.com/hellowoshibb/STA304_paper3"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+abstract: "write abstract here"
+output: 
+  bookdown::pdf_document2:
+    fig_caption: yes
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(hash)
+library(dplyr)
+library(forcats)
+library(knitr)
+library(janitor)
+library(tidyverse)
+library(tidyr)
+library(wrapr)
+library(haven)
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r, message=FALSE, cache=TRUE, warning = FALSE, echo = FALSE}
+#read gss raw data
+gss <- read_csv(here::here("input/data/gss.csv"))
+```
