@@ -34,7 +34,7 @@ gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
 
-```{r, Age-first-child, fig.cap="Distribution of Age of Respondents having their first child ", warning=FALSE, echo=FALSE}
+```{r, female-age-first-child, fig.cap="Distribution of Age of Females having their first child ", warning=FALSE, echo=FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -51,17 +51,25 @@ gss_afb |>
   filter(sex == "Female") |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=(..count..)/sum(..count..)))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  labs(x = "Age of Women having their first child",
+  labs(title = "Distribution of Age of Females having their First Child",
+       x = "Age",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")
+
+
+
+```
+
+```{r, Male-age-first-child, fig.cap="Distribution of Age of Males having their first child ", warning=FALSE, echo=FALSE}
+
   
 gss_afb |>
   filter(sex == "Male") |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=(..count..)/sum(..count..)))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  labs(x = "Age of Male having their first child",
+  labs(title = "Distribution of Age of Males having their first child" ,
+       x = "Age",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")
-
 
 ```
