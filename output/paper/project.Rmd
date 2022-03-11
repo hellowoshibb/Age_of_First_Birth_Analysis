@@ -33,6 +33,23 @@ library(gridExtra)
 gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
+```{r, age-first-child, fig.cap="Age of respondents having first child ", warning=FALSE, echo=FALSE}
+
+gss_afb <- gss |>
+  select(age_at_first_birth, sex) |>
+  na.omit()
+
+gss_afb |>
+  ggplot(mapping = aes(x = age_at_first_birth, fill=(..count..)/sum(..count..)))+
+  geom_bar(aes(y = (..count..)/sum(..count..)))+
+  labs(title = "Distribution of Age of Respondents having their First Child",
+       x = "Age",
+       y = "Proportion of respondents",
+       fill = "Proportion of respondents")
+
+```
+
+
 
 ```{r, female-age-first-child, fig.cap="Distribution of Age of Females having their first child ", warning=FALSE, echo=FALSE}
 
