@@ -63,4 +63,5 @@ gss_afb |>
        y = "Proportion of respondents",
        fill = "Proportion of respondents")
 
+
 ```
