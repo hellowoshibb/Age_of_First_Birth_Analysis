@@ -91,7 +91,7 @@ gss_afb |>
 
 ```
 
-```{r, edu-highschooldropout-age-first-child, fig.cap="Distribution of Age of respondents having first child by education levels ", warning=FALSE, echo=FALSE}
+```{r, education, fig.cap="Distribution of Age of respondents having first child by education levels ", warning=FALSE, echo=FALSE}
 
 ed <- gss |>
   select(age_at_first_birth, education)|>
