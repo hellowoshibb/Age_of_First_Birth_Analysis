@@ -91,7 +91,7 @@ gss_afb |>
 
 ```
 
-```{r, education, fig.cap="Distribution of Age of respondents having first child by education levels ", warning=FALSE, echo=FALSE}
+```{r, education, fig.cap="Distribution of Age at first birth by education levels ", warning=FALSE, echo=FALSE}
 
 ed <- gss |>
   select(age_at_first_birth, education)|>
@@ -108,7 +108,7 @@ ed[ed == "University certificate, diploma or degree above the bach..."] <- "Abov
 ed |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=education))+
   geom_bar(aes(y = (..count..)/sum(..count..)))+
-  labs(title = "Distribution of Age of respondents having first child by education levels" ,
+  labs(title = "Distribution of Age at first birth by education levels" ,
        x = "Age",
        y = "Counts of respondents",
        fill = "Education levels")
