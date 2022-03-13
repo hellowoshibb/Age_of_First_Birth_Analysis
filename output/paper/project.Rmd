@@ -90,3 +90,26 @@ gss_afb |>
        fill = "Proportion of respondents")
 
 ```
+
+```{r, edu-highschooldropout-age-first-child, fig.cap="Distribution of Age of respondents having first child by education levels ", warning=FALSE, echo=FALSE}
+
+ed <- gss |>
+  select(age_at_first_birth, education)|>
+  filter(education == "High school diploma or a high school equivalency certificate" |
+         education == "Less than high school diploma or its equivalent" |
+         education == "Bachelor's degree (e.g. B.A., B.Sc., LL.B.)"|
+        education == "University certificate, diploma or degree above the bach...")
+  
+ed[ed == "High school diploma or a high school equivalency certificate"] <- "High School"
+ed[ed == "Less than high school diploma or its equivalent"] <- "Less than high achool"
+ed[ed == "Bachelor's degree (e.g. B.A., B.Sc., LL.B.)"] <- "Bachelor"
+ed[ed == "University certificate, diploma or degree above the bach..."] <- "Above Bachelor"
+
+ed |>
+  ggplot(mapping = aes(x = age_at_first_birth, fill=education))+
+  geom_bar(aes(y = (..count..)/sum(..count..)))+
+  labs(title = "Distribution of Age of respondents having first child by education levels" ,
+       x = "Age",
+       y = "Counts of respondents",
+       fill = "Education levels")
+```
