@@ -158,3 +158,48 @@ p4 <- oc |>
 
 cowplot::plot_grid(p3, p4)
 ```
+
+```{r, incomeboxplot, fig.cap="Distribution of Age at first birth (income>$125K)", warning=FALSE, echo=FALSE}
+
+oc <- gss |>
+  select(age_at_first_birth, occupation, income_respondent)|>
+  filter(occupation == "Business, finance, and administration occupations" |
+         occupation == "Sales and service occupations" |
+         occupation == "Health occupations"|
+         occupation == "Management occupations")
+  
+oc[oc == "Business, finance, and administration occupations"] <- "Business occupation"
+oc[oc == "Sales and service occupations"] <- "Sales occupation"
+oc[oc == "Management occupations"] <- "Management occupations"
+
+
+p1 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
+            "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Health occupations") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
+  geom_boxplot(colour = 'green')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'green')+
+  labs(title = "Health Occupation Distribution" ,,
+       color = "Occupation")+
+  theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
+
+p2 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
+            "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Business occupation") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
+  geom_boxplot(colour = 'yellow')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'yellow')+
+  labs(title = "Business Occupation Distribution" ,,
+       color = "Occupation")+
+  theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
+
+p3 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
+            "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Sales occupation") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
+  geom_boxplot(colour = 'blue')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'blue')+
+  labs(title = "Sales Occupation Distribution" ,,
+       color = "Occupation")+
+  theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
+
+p4 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
+            "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Management occupations") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
+  geom_boxplot(colour = 'red')+  geom_jitter(alpha=0.3, width = 0.05, height = 0, colour = 'red')+
+  labs(title = "Management Occupation Distribution" ,,
+       color = "Occupation")+
+  theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
+
+cowplot::plot_grid(p1, p2, p3, p4)
+```
