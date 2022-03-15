@@ -119,6 +119,7 @@ oc <- gss |>
 oc[oc == "Business, finance, and administration occupations"] <- "Business occupation"
 oc[oc == "Sales and service occupations"] <- "Sales occupation"
 oc[oc == "Management occupations"] <- "Management occupations"
+
 oc %>%
   mutate(income_respondent = fct_relevel(income_respondent, 
             "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" ))%>%
@@ -135,7 +136,7 @@ oc %>%
 
 ```
 
-```{r, income25K, fig.cap="Distribution of Age at first birth by income", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, income_comparison, fig.cap="Distribution of Age at first birth by income", warning=FALSE, echo=FALSE, message = FALSE}
 
 p3 <- oc |>
   filter(income_respondent == "Less than $25,000") |>
@@ -157,4 +158,24 @@ p4 <- oc |>
   theme(plot.title = element_text(size=10))
 
 cowplot::plot_grid(p3, p4)
+```
+
+```{r, feelings_in_life, fig.cap="Number of total children", warning=FALSE, echo=FALSE, message = FALSE}
+
+gss_fl <- gss %>%
+  select(age_at_first_birth, feelings_life) %>%
+  na.omit()
+
+gss_fl <- gss_fl %>%
+  group_by(feelings_life) %>%
+  summarize(mean(age_at_first_birth))%>%
+  rename(mean_age = `mean(age_at_first_birth)`)
+  
+
+gss_fl %>% 
+  ggplot(aes(feelings_life, mean_age)) +
+  geom_point() +
+  geom_line()+
+  labs(title = "Age of having first child vs feelings about life as a whole")
+
 ```
