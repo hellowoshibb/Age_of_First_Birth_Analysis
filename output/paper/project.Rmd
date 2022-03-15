@@ -34,7 +34,7 @@ library(gridExtra)
 gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
-```{r, age-first-child, fig.cap="Age of respondents having first child ", warning=FALSE, echo=FALSE}
+```{r, age-first-child, fig.cap="Age of respondents having first child ", warning=FALSE, echo=FALSE, message = FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -52,7 +52,7 @@ gss_afb |>
 
 
 
-```{r, female-age-first-child, fig.cap="Distribution of Age of Females having their first child ", warning=FALSE, echo=FALSE}
+```{r, female-age-first-child, fig.cap="Distribution of Age of Females having their first child ", message = FALSE, warning=FALSE, echo=FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -70,7 +70,7 @@ gss_afb |>
 
 ```
 
-```{r, Male-age-first-child, fig.cap="Distribution of Age of Males having their first child ", warning=FALSE, echo=FALSE}
+```{r, Male-age-first-child, fig.cap="Distribution of Age of Males having their first child ", warning=FALSE, echo=FALSE, message = FALSE}
 
   
 gss_afb |>
@@ -83,7 +83,7 @@ gss_afb |>
 
 ```
 
-```{r, education, fig.cap="Distribution of Age at first birth by education levels ", warning=FALSE, echo=FALSE}
+```{r, education, fig.cap="Distribution of Age at first birth by education levels ", warning=FALSE, echo=FALSE, message = FALSE}
 
 ed <- gss |>
   select(age_at_first_birth, education)|>
@@ -107,7 +107,7 @@ ed |>
 
 
 
-```{r, occupation, fig.cap="Distribution of Age at first birth by occupation ", warning=FALSE, echo=FALSE}
+```{r, occupation, fig.cap="Distribution of Age at first birth by occupation ", warning=FALSE, echo=FALSE, message = FALSE}
 
 
 oc <- gss |>
@@ -137,7 +137,7 @@ oc %>%
 
 ```
 
-```{r, income25K, fig.cap="Distribution of Age at first birth (income<$25K)", warning=FALSE, echo=FALSE}
+```{r, income25K, fig.cap="Distribution of Age at first birth (income<$25K)", warning=FALSE, echo=FALSE, message = FALSE}
 
 oc |>
   filter(income_respondent == "Less than $25,000") |>
@@ -150,7 +150,7 @@ oc |>
 ```
 
 
-```{r, income125K, fig.cap="Distribution of Age at first birth (income>$125K)", warning=FALSE, echo=FALSE}
+```{r, income125K, fig.cap="Distribution of Age at first birth (income>$125K)", warning=FALSE, echo=FALSE, message = FALSE}
 oc |>
   filter(income_respondent == "$125,000 and more") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
