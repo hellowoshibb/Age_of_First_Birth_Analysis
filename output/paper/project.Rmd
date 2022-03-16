@@ -29,6 +29,13 @@ library(ggplot2)
 library(gridExtra)
 ```
 
+
+
+# Introduction
+
+
+# Data
+
 ```{r, message=FALSE, cache=TRUE, warning = FALSE, echo = FALSE}
 #read gss raw data
 gss <- read_csv(here::here("input/data/gss.csv"))
@@ -185,3 +192,10 @@ gss_fl %>%
 ```
 
 
+# Results
+
+
+# Discussion
+
+
+# References
