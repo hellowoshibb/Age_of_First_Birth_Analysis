@@ -170,7 +170,7 @@ cowplot::plot_grid(p3, p4, nrow=2)
 ```
 
 
-```{r, feelins_life, fig.cap="Age of having first child vs feelings about life as a whole ", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, feelings, fig.cap="Age of having first child vs feelings about life as a whole ", warning=FALSE, echo=FALSE, message = FALSE}
 
 gss_fl <- gss %>%
   select(age_at_first_birth, feelings_life) %>%
@@ -198,4 +198,8 @@ gss_fl %>%
 # Discussion
 
 
+# Survey
+
+
 # References
+
