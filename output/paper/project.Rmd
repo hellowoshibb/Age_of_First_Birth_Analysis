@@ -45,6 +45,7 @@ gss_afb |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(fill="steelblue3", colour = "white", aes(y = (..count..)/sum(..count..)))+
   labs(title = "Distribution of Age of Respondents having their First Child",
+       x = "Age at first birth",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")
 
@@ -63,6 +64,7 @@ p1 <- gss_afb |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
   labs(title = "Distribution of Age of Females",
+       x = "Age at first birth",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
   theme(plot.title = element_text(size=10))
@@ -74,6 +76,7 @@ p2 <- gss_afb |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
   labs(title = "Distribution of Age of Males",
+       x = "Age at first birth",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
   theme(plot.title = element_text(size=10))
@@ -99,7 +102,8 @@ ed[ed == "University certificate, diploma or degree above the bach..."] <- "Abov
 ed |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=education))+
   geom_histogram(aes(y = (..count..)/sum(..count..)))+
-  labs(title = "Distribution of Age at first birth by education levels" ,,
+  labs(title = "Distribution of Age at First Birth by Education levels" ,
+       x = "Age at first birth",
        y = "Counts of respondents",
        fill = "Education levels")+
   scale_fill_manual(values = c("steelblue1","steelblue2", "steelblue3", "steelblue4"))
@@ -168,14 +172,15 @@ gss_fl <- gss %>%
 gss_fl <- gss_fl %>%
   group_by(feelings_life) %>%
   summarize(mean(age_at_first_birth))%>%
-  rename(mean_age = `mean(age_at_first_birth)`)
+  rename("Mean of age" = `mean(age_at_first_birth)`)
   
 
 gss_fl %>% 
-  ggplot(aes(feelings_life, mean_age)) +
+  ggplot(aes(feelings_life, `Mean of age`)) +
   geom_point() +
   geom_line()+
-  labs(title = "Age of having first child vs feelings about life as a whole")
+  labs(title = "Age at First Birth vs Feelings about Life as a whole",
+       x = "Age at first birth")
 
 ```
 
