@@ -5,7 +5,7 @@ author:
   - Sevnur Kulak
   - Dongqi Bi
   - Ivan Li
-thanks: "Code and data are available at: https://github.com/hellowoshibb/STA304_paper3"
+thanks: "Code and data are available at: https://github.com/hellowoshibb/Age_of_First_Birth_Analysis"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "write abstract here"
 output: 
@@ -70,8 +70,7 @@ p1 <- gss_afb |>
   filter(sex == "Female") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
-  labs(title = "Females distribution",
-       x = "Age at first birth",
+  labs(x = "Age at first birth (Female)",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
   theme(plot.title = element_text(size=10))+
@@ -83,8 +82,7 @@ p2 <- gss_afb |>
   filter(sex == "Male") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
-  labs(title = "Males distribution",
-       x = "Age at first birth",
+  labs(x = "Age at first birth (Male)",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
   theme(plot.title = element_text(size=10))+
@@ -195,6 +193,8 @@ gss_fl %>%
 ```
 
 
+
+
 # Results
 
 
@@ -206,3 +206,5 @@ gss_fl %>%
 
 # References
 
+
+# Appendix
