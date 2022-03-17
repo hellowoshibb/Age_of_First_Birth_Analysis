@@ -14,7 +14,7 @@ output:
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE, message=FALSE, cache=TRUE, warning = FALSE, echo = FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(hash)
 library(dplyr)
@@ -41,7 +41,7 @@ library(gridExtra)
 gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
-```{r, age-first-child, fig.cap="Distribution of age at which respondents have their first child ",warning=FALSE, echo=FALSE, message = FALSE}
+```{r, age-first-child, fig.cap="Distribution of age at which respondents have their first child ",warning=FALSE, echo=FALSE, results='hide',fig.keep='all', message=FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -60,7 +60,7 @@ gss_afb |>
 
 
 
-```{r, female-age-first-child, fig.cap="Distribution of age at which respondents have their first child by gender ", message = FALSE, warning=FALSE, echo=FALSE}
+```{r, female-age-first-child, fig.cap="Distribution of age at which respondents have their first child by gender ", warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -94,7 +94,7 @@ cowplot::plot_grid(p1, p2)
 
 ```
 
-```{r, education, fig.cap="Distribution of age at which respondents have their first child by education levels ", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, education, fig.cap="Distribution of age at which respondents have their first child by education levels ", warning=FALSE, echo=FALSE,results='hide',fig.keep='all',, message=FALSE}
 
 ed <- gss |>
   select(age_at_first_birth, education)|>
@@ -121,7 +121,7 @@ ed |>
 
 
 
-```{r, income, fig.cap="Part1 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
+```{r, income, fig.cap="Part1 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
 
 oc <- gss |>
   select(age_at_first_birth, occupation, income_respondent)|>
@@ -167,12 +167,12 @@ cowplot::plot_grid(p1, p2, nrow=2)
 
 ```
 
-```{r, income2, fig.cap="Part2 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
+```{r, income2, fig.cap="Part2 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
 cowplot::plot_grid(p3, p4, nrow=2)
 ```
 
 
-```{r, feelings, fig.cap="Age at which having their first child vs feelings about life as a whole", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, feelings, fig.cap="Age at which having their first child vs feelings about life as a whole", warning=FALSE, echo=FALSE, results='hide',fig.keep='all', message=FALSE}
 
 
 gss_fl <- gss%>%
