@@ -51,7 +51,7 @@ The raw data set is gathered by the General Social Survey C31 MAIN SURVEY- FAMIL
 
 The data cleaning file for tidying up the raw data into the dataset we used is impremented in the script/data_cleaning.R
 
-The algorithms and data analysis study is impemented in outputs/paper/project.Rmd. You can run this file using RStudio.
+The algorithms and data analysis study is impemented in outputs/paper/Age_of_First_Birth_Analysis.Rmd. You can run this file using RStudio.
 
 ### More Details 
-View our paper at outputs/paper/project.pdf for more information. 
+View our paper at outputs/paper/Age_of_First_Birth_Analysis.pdf for more information. 
