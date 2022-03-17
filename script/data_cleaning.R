@@ -1,39 +1,3 @@
-#### Preamble ####
-# Purpose: The purpose of this code is to clean-up the 2017 GSS data obtained 
-# from the U of T library. That data is available to U of T students, but it needs 
-# to be put into a tidy format before it can be analysed. This code does that.
-# The main issue is that the data are released with codes for variables, whereas,
-# we want the variable. e.g. sex is 1 or 2, but we want sex is female or male. (This
-# sounds trite in that case, but gets more difficult with more involved variables.)
-# So we create a dictionary type dataset that has the variable names and their 
-# possible values. In that we embed some R code that will do a replacement. We 
-# then apply that dataset to the raw dataset. Finally we do all the usual cleaning.
-# to the dataset. You will end up with a dataset called gss.csv.
-# Authors: Rohan Alexander and Sam Caetano
-# Contact: rohan.alexander@utoronto.ca
-# Date: 7 October 2020
-# License: MIT
-# Pre-reqs: You need to have downloaded the data from the library. To do that: 
-  ## 1. Go to: http://www.chass.utoronto.ca/
-  ## 2. Data centre --> UofT users or http://dc.chass.utoronto.ca/myaccess.html
-  ## 3. Click SDA @ CHASS, should redirect to sign in. Sign in.
-  ## 4. Continue in English (you're welcome to use the French, but we probably can't
-  ## help you too much).
-  ## 5. Crtl F GSS, click
-  ## 6. Click "Data" on the one you want. We used 2017, but you may want a different 
-  ## wave. In particular the General Social Survey on social identity (cycle 27), 
-  ## 2013 has some variables on voter participation if you're into that sort of 
-  ## thing. You're welcome to pick any year but this code applies to 2017.
-  ## 7. Click download
-  ## 8. Select CSV data file, data definitions for STATA (gross, but stick with it for now).
-  ## 9. Can select all variables by clicking button next to green colored "All". Then continue.
-  ## 10. Create the files, download and save
-# Check: 
-  ## You WILL need to change the raw data name. Search for .csv - line 41
-  ## You may need to adjust the filepaths depending on your system. Search for: read_
-
-
-#### Workspace set-up ####
 library(janitor)
 library(tidyverse)
 
