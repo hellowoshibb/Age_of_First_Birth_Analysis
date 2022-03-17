@@ -1,5 +1,5 @@
 ---
-title: "How Socioeconomic Factors Affect Average Age of First Birth"
+title: "How Socioeconomic Factors Affect Average Age of First Birth in Canada"
 
 author: 
   - Sevnur Kulak
@@ -14,7 +14,7 @@ output:
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, message=FALSE, cache=TRUE, warning = FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(hash)
 library(dplyr)
@@ -41,7 +41,7 @@ library(gridExtra)
 gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
-```{r, age-first-child, fig.cap="Age of respondents having first child ",warning=FALSE, echo=FALSE, message = FALSE}
+```{r, age-first-child, fig.cap="Distribution of age at which respondents have their first child ",warning=FALSE, echo=FALSE, message = FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -51,16 +51,16 @@ gss_afb <- gss |>
 gss_afb |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(fill="steelblue3", colour = "white", aes(y = (..count..)/sum(..count..)))+
-  labs(title = "Distribution of Age of Respondents having their First Child",
-       x = "Age at first birth",
+  labs(x = "Age at first birth",
        y = "Proportion of respondents",
-       fill = "Proportion of respondents")
+       fill = "Proportion of respondents")+
+  theme_classic()
 
 ```
 
 
 
-```{r, female-age-first-child, fig.cap="Distribution of Age of respondents having their first child by gender ", message = FALSE, warning=FALSE, echo=FALSE}
+```{r, female-age-first-child, fig.cap="Distribution of age at which respondents have their first child by gender ", message = FALSE, warning=FALSE, echo=FALSE}
 
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
@@ -70,11 +70,12 @@ p1 <- gss_afb |>
   filter(sex == "Female") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
-  labs(title = "Distribution of Age of Females",
+  labs(title = "Females distribution",
        x = "Age at first birth",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
-  theme(plot.title = element_text(size=10))
+  theme(plot.title = element_text(size=10))+
+  theme_classic()
 
 
   
@@ -82,17 +83,18 @@ p2 <- gss_afb |>
   filter(sex == "Male") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
   geom_histogram(aes(y = (..count..)/sum(..count..)), fill="steelblue3", colour = "white")+
-  labs(title = "Distribution of Age of Males",
+  labs(title = "Males distribution",
        x = "Age at first birth",
        y = "Proportion of respondents",
        fill = "Proportion of respondents")+
-  theme(plot.title = element_text(size=10))
+  theme(plot.title = element_text(size=10))+
+  theme_classic()
 
 cowplot::plot_grid(p1, p2)
 
 ```
 
-```{r, education, fig.cap="Distribution of Age at first birth by education levels ", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, education, fig.cap="Distribution of age at which respondents have their first child by education levels ", warning=FALSE, echo=FALSE, message = FALSE}
 
 ed <- gss |>
   select(age_at_first_birth, education)|>
@@ -102,24 +104,24 @@ ed <- gss |>
         education == "University certificate, diploma or degree above the bach...")
   
 ed[ed == "High school diploma or a high school equivalency certificate"] <- "High School"
-ed[ed == "Less than high school diploma or its equivalent"] <- "Less than high achool"
+ed[ed == "Less than high school diploma or its equivalent"] <- "Less than high school"
 ed[ed == "Bachelor's degree (e.g. B.A., B.Sc., LL.B.)"] <- "Bachelor"
 ed[ed == "University certificate, diploma or degree above the bach..."] <- "Above Bachelor"
 
 ed |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=education))+
-  geom_histogram(aes(y = (..count..)/sum(..count..)))+
-  labs(title = "Distribution of Age at First Birth by Education levels" ,
-       x = "Age at first birth",
+  geom_histogram(aes(y = (..count..)/sum(..count..)),colour = "white")+
+  labs(x = "Age at first birth",
        y = "Counts of respondents",
        fill = "Education levels")+
-  scale_fill_manual(values = c("steelblue1","steelblue2", "steelblue3", "steelblue4"))
+  scale_fill_manual(values = c("steelblue1","steelblue2", "steelblue3", "steelblue4"))+
+  theme_classic()
 ```
 
 
 
 
-```{r, income, fig.cap="Part1 : Distributions of age by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
+```{r, income, fig.cap="Part1 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
 
 oc <- gss |>
   select(age_at_first_birth, occupation, income_respondent)|>
@@ -135,14 +137,14 @@ oc[oc == "Management occupations"] <- "Management occupations"
 
 p1 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
             "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Health occupations") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
-  geom_boxplot(colour = 'green')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'green')+
+  geom_boxplot(colour = 'green4')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'green4')+
   labs(title = "Health Occupation Distribution" ,,
        color = "Occupation")+
   theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
 
 p2 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
             "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Business occupation") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
-  geom_boxplot(colour = 'yellow')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'yellow')+
+  geom_boxplot(colour = 'gold3')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'gold3')+
   labs(title = "Business Occupation Distribution" ,,
        color = "Occupation")+
   theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
@@ -165,29 +167,30 @@ cowplot::plot_grid(p1, p2, nrow=2)
 
 ```
 
-```{r, income2, fig.cap="Part2 : Distributions of age by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
+```{r, income2, fig.cap="Part2 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE, message = FALSE}
 cowplot::plot_grid(p3, p4, nrow=2)
 ```
 
 
-```{r, feelings, fig.cap="Age of having first child vs feelings about life as a whole ", warning=FALSE, echo=FALSE, message = FALSE}
+```{r, feelings, fig.cap="Age at which having their first child vs feelings about life as a whole", warning=FALSE, echo=FALSE, message = FALSE}
 
-gss_fl <- gss %>%
-  select(age_at_first_birth, feelings_life) %>%
-  na.omit()
 
-gss_fl <- gss_fl %>%
+gss_fl <- gss%>%
+  select(feelings_life, age_at_first_birth) %>%
+  na.omit()%>%
   group_by(feelings_life) %>%
-  summarize(mean(age_at_first_birth))%>%
-  rename("Mean of age" = `mean(age_at_first_birth)`)
-  
+  mutate(mean = mean(age_at_first_birth))%>%
+  rename(mean_age = `mean`)
 
-gss_fl %>% 
-  ggplot(aes(feelings_life, `Mean of age`)) +
-  geom_point() +
-  geom_line()+
-  labs(title = "Age at First Birth vs Feelings about Life as a whole",
-       x = "Age at first birth")
+
+
+gss_fl %>%
+ ggplot(aes(x=feelings_life, y=age_at_first_birth)) +
+   geom_point(size = 0.05, color = "steelblue1")+
+  geom_line(aes(x = feelings_life, y = mean_age), size = 1)+
+  labs(x = "Satisfaction with life scale", y = "Age at first birth")
+  theme_classic()
+
 
 ```
 
