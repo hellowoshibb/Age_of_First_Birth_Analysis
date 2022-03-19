@@ -173,22 +173,36 @@ cowplot::plot_grid(p3, p4, nrow=2)
 ```{r, feelings, fig.cap="Age at which having their first child vs feelings about life as a whole", warning=FALSE, echo=FALSE, results='hide',fig.keep='all', message=FALSE}
 
 
-gss_fl <- gss%>%
+gss_fl <- gss%>% # Original dataset cleaning
   select(feelings_life, age_at_first_birth) %>%
   na.omit()%>%
   group_by(feelings_life) %>%
   mutate(mean = mean(age_at_first_birth))%>%
   rename(mean_age = `mean`)
 
-
-
-gss_fl %>%
+gss_fl %>% # Original graph
  ggplot(aes(x=feelings_life, y=age_at_first_birth)) +
    geom_point(size = 0.05, color = "steelblue1")+
   geom_line(aes(x = feelings_life, y = mean_age), size = 1)+
   labs(x = "Satisfaction with life scale", y = "Age at first birth")
   theme_classic()
+  
+gss_fl_test <- gss_fl %>% # Ivan testing dataset cleaning
+  select(mean_age, feelings_life, age_at_first_birth) %>%
+  group_by(age_at_first_birth) %>%
+  mutate(round_age = round(age_at_first_birth))
+  
+ gss_fl_testa <- gss_fl_test %>% # Ivan testing dataset cleaning
+  select(mean_age, round_age, feelings_life, age_at_first_birth) %>%
+  group_by(round_age) %>%
+  mutate(mean_feeling = mean(feelings_life))
 
+gss_fl_testa %>% # Ivan's graph
+ggplot(aes(x=age_at_first_birth, y=feelings_life)) +
+  geom_point(size = 0.05, color = "steelblue1")+
+geom_line(aes(x = round_age, y = mean_feeling), size = 1)+
+labs(x = "Age at first birth", y = "Satisfaction with life scale")
+  theme_classic()
 
 ```
 
@@ -209,6 +223,10 @@ From the raw data displaying the distribution of first birth ages (Figure \@ref(
 By grouping the data by gender and plotting multiple graphs, we are given a comparison of the average age of when one has their first child between women and men.  (Figure \@ref(fig:female-age-first-child)) shows that in Canada, females are inclined to have children earlier than men do. We observe a right skew in the distribution for females, with the most common age to have a first child being in the 20-25 interval, while the male distribution is less skewed and the most frequent ages are in the 25-30 interval. By separating the graphs by gender, we can determine that the spike in (Figure \@ref(fig:age-first-child)) at ages above 45 are caused entirely by men, and it is observed that a very low proportion of women have their first child after 40-45 years of age. This could be explained by women gradually becoming unable to have children as a result of natural human aging, and men choosing to have partners and have their first child at older ages with women of younger age. The conclusion from this also may also provide an explanation to why the average age for men appears to be higher than for women. 
 
 In order to gain more information about the relationship between socioeconomic factors and the age that Canadians have their first children, we plotted the data from our first graph once again, but grouped information between different education levels of individuals. (Figure \@ref(fig:education)) shows varying levels of skew between different education groups. Generally, it can be seen that the higher education level that one receives, the later they have their first child on average. This can be observed in the 25-30 age range, where as births for people with less than a high school education are shown to be decreasing, births for people with a bachelor's education or higher peak. As these individuals are still in their studies through their early and mid 20s, compared to those who stop education before or after high school and therefore not distracted by post-secondary education, it is reasonable to believe that one of the contributing factors towards this trend is the burden of post-secondary education distracting individuals from choosing to have a child, consequently delaying their opportunities years later than those with no post-secondary education. 
+
+We then wanted to compare the impact of an individual's occupation and income on our findings. To do this, our observations were grouped into four different occupation categories, and the summary statistics for the average age of having a first child were displayed in order from occupational income, resulting in 4 boxplot graphs containing statistical information for each income level within an occupation, shown in (Figure \@ref(fig:income)). Results trend towards individuals with higher incomes having their first child at later ages compared to lower income individuals across all four occupational categories. It can also be observed that from our dataset, individuals working in sales have children the earliest compared to the other occupations. The mean age in the lowest income bracket is observed to be below 25, and the mean in the highest bracket is further from 30 than the other occupations. Possible explanations could be that less time is required in post-secondary studies in the sales occupation compared to health, business, and management, which often require post-undergraduate studies to enter the industry. 
+
+Lastly, we attempted to compare findings between the age that individuals have their first child and their self-assessed satisfaction of life as reported on the survey. The raw data of the survey comparing age at first birth vs life satisfaction is included along with a line graph showing the mean satisfaction level of each age in (Figure \@ref(fig:feelings)). From the graph we can observe that there appears to be no significant relation between life satisfaction and average of first child, although there are some notable results. Individuals who have their first child between 25-30 report to have slightly higher life satisfaction than other age periods, and individuals below 20 years old report the one of the lowest satisfaction ratings in the dataset. The strange peaks and troughs at years 43-45 are likely attributed to the low number of observations for that age range, as seen by the raw data. A higher sample size would be needed to obtain a more accurate picture of the relationship between first birth age and satisfaction at much older ages.   
 
 # Discussion
 
