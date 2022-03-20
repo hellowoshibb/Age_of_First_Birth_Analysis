@@ -27,6 +27,7 @@ library(wrapr)
 library(haven)
 library(ggplot2)
 library(gridExtra)
+library(tesseract)
 ```
 
 
@@ -238,3 +239,19 @@ Lastly, we attempted to compare findings between the age that individuals have t
 
 
 # Appendix
+```{r, QR_code, fig.cap="Coverpage of the supplementary survey", warning=FALSE}
+
+knitr::include_graphics(here::here("input/survey/QR_code.png"))
+
+```
+
+```{r, Survey, fig.cap="Screenshots of the supplementary survey", warning=FALSE}
+knitr::include_graphics(here::here("input/survey/P1.png"))
+knitr::include_graphics(here::here("input/survey/P2.png"))
+knitr::include_graphics(here::here("input/survey/P3.png"))
+knitr::include_graphics(here::here("input/survey/P4.png"))
+knitr::include_graphics(here::here("input/survey/P5.png"))
+knitr::include_graphics(here::here("input/survey/P5.png"))
+knitr::include_graphics(here::here("input/survey/P6.png"))
+knitr::include_graphics(here::here("input/survey/P7.png"))
+```
