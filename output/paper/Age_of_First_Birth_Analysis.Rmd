@@ -16,6 +16,7 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# Loading packages
 library(hash)
 library(dplyr)
 library(forcats)
@@ -50,7 +51,7 @@ gss <- read_csv(here::here("input/data/gss.csv"))
 ```
 
 ```{r, age-first-child, fig.cap="Distribution of age at which respondents have their first child ",warning=FALSE, echo=FALSE, results='hide',fig.keep='all', message=FALSE}
-
+# Generating first graph
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
   na.omit()
@@ -69,11 +70,11 @@ gss_afb |>
 
 
 ```{r, female-age-first-child, fig.cap="Distribution of age at which respondents have their first child by gender ", warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
-
+# Selecting only required variables, removing NA values
 gss_afb <- gss |>
   select(age_at_first_birth, sex) |>
   na.omit()
-
+# Generating graph
 p1 <- gss_afb |>
   filter(sex == "Female") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
@@ -85,7 +86,7 @@ p1 <- gss_afb |>
   theme_classic()
 
 
-  
+# Generating second graph  
 p2 <- gss_afb |>
   filter(sex == "Male") |>
   ggplot(mapping = aes(x = age_at_first_birth))+
@@ -95,13 +96,14 @@ p2 <- gss_afb |>
        fill = "Proportion of respondents")+
   theme(plot.title = element_text(size=10))+
   theme_classic()
-
+# Combining graphs into one figure
 cowplot::plot_grid(p1, p2)
 
 ```
 
 ```{r, education, fig.cap="Distribution of age at which respondents have their first child by education levels ", warning=FALSE, echo=FALSE,results='hide',fig.keep='all',, message=FALSE}
 
+# Reducing name of variables 
 ed <- gss |>
   select(age_at_first_birth, education)|>
   filter(education == "High school diploma or a high school equivalency certificate" |
@@ -114,6 +116,7 @@ ed[ed == "Less than high school diploma or its equivalent"] <- "Less than high s
 ed[ed == "Bachelor's degree (e.g. B.A., B.Sc., LL.B.)"] <- "Bachelor"
 ed[ed == "University certificate, diploma or degree above the bach..."] <- "Above Bachelor"
 
+# Generating graph, var names are shortened so legend is more clear
 ed |>
   ggplot(mapping = aes(x = age_at_first_birth, fill=education))+
   geom_histogram(aes(y = (..count..)/sum(..count..)),colour = "white")+
@@ -129,6 +132,7 @@ ed |>
 
 ```{r, income, fig.cap="Part1 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
 
+# Cleaning data, shortening variable names
 oc <- gss |>
   select(age_at_first_birth, occupation, income_respondent)|>
   filter(occupation == "Business, finance, and administration occupations" |
@@ -140,7 +144,7 @@ oc[oc == "Business, finance, and administration occupations"] <- "Business occup
 oc[oc == "Sales and service occupations"] <- "Sales occupation"
 oc[oc == "Management occupations"] <- "Management occupations"
 
-
+# Generating 4 graphs, they will be combined into 2 figures
 p1 = oc %>% mutate(income_respondent = fct_relevel(income_respondent, 
             "Less than $25,000", "$25,000 to $49,999", "$50,000 to $74,999", "$75,000 to $99,999","$100,000 to $ 124,999", "$125,000 and more" )) |> filter(occupation == "Health occupations") |>  ggplot(aes(x=income_respondent, y=age_at_first_birth)) +
   geom_boxplot(colour = 'green4')+  geom_jitter(alpha = 0.3, width = 0.05, height = 0, colour = 'green4')+
@@ -168,19 +172,20 @@ p4 = oc %>% mutate(income_respondent = fct_relevel(income_respondent,
   labs(title = "Management Occupation Distribution" ,,
        color = "Occupation")+
   theme(axis.text.x = element_text(angle = 35)) + labs(x='Income', y='Age at First Birth')
-
+# Generating first figure, combining first two graphs
 cowplot::plot_grid(p1, p2, nrow=2)
 
 ```
 
 ```{r, income2, fig.cap="Part2 : Distribution of age at which respondents have their first child by occupation and income", fig.height=20, warning=FALSE, echo=FALSE,results='hide',fig.keep='all', message=FALSE}
+# Generating second figure, combining last two graphs
 cowplot::plot_grid(p3, p4, nrow=2)
 ```
 
 
 ```{r, feelings, fig.cap="Feelings about life as a whole vs age at which having their first child", warning=FALSE, echo=FALSE, results='hide',fig.keep='all', message=FALSE}
 
-
+# Mutating data, rounding ages and adding summary statistics for ease of graphing
 gss_fl <- gss%>% 
   select(feelings_life, age_at_first_birth) %>%
   na.omit()
@@ -194,7 +199,7 @@ gss_fl <- gss_fl %>%
   select(round_age, feelings_life, age_at_first_birth) %>%
   group_by(round_age) %>%
   mutate(mean_feeling = mean(feelings_life))
-
+# Generating graph
 gss_fl%>% 
 ggplot(aes(x=age_at_first_birth, y=feelings_life)) +
   geom_point(size = 0.05, color = "steelblue1")+
