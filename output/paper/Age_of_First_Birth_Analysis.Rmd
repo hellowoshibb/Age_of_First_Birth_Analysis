@@ -224,7 +224,7 @@ In Figure \@ref(fig:age-first-child), we have the distribution of age at which r
 
 # Results
 
- The programming language R [@citer] was used to load the data from the CHASS website using the tidyverse package. The janitor [@citejanitor] and tidyverse [@citetidyverse] packages were used to correct variable names, manipulate string values into numerical values, and clean up the dataset. Once this was done, readr [@citereadr] was used to open the cleaned file and begin analysis.
+ The programming language R [@citeR] was used to load the data from the CHASS website using the tidyverse package. The janitor [@citejanitor] and tidyverse [@citetidyverse] packages were used to correct variable names, manipulate string values into numerical values, and clean up the dataset. Once this was done, readr [@citereadr] was used to open the cleaned file and begin analysis.
 
 As the dataset had been cleaned, little further data manipulation needed to be done except removing observations with missing values and creating summary statistic variables of existing data to use in our analysis. Once this was done, all variables of interest were plotted against the average age of first birth to visualize the data and its relation to the response variable using the ggplot2 [@citeggplot2], forcats [@citeforcats], and gridExtra [@citegridextra] packages to create our graphical data. It was possible to analyze the trends between our chosen socioeconomic factors in the survey for our thesis. The knitr [@knitr] package was used to generate the pdf for this report.
 
