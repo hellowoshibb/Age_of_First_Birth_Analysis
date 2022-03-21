@@ -11,7 +11,7 @@ Ivan Li
 <h2 align="center"> Abstract </h2>
 <p align="justify">
 
-The average age for having a first child has been shifting from early 20s to older ages recently. This paper investigates potential factors to research on likelihood of having children at an early age depending on gender, education level, occupation, income, and mental health. Whereas women are more likely to have their first children at earlier stages of their lives compared to men, education, occupation, and income are other factors which have an impact for individuals to have their first child in later stages of their lives. It is crucial to assess the underlying factors of this changing trend for further application in the labor market and potential upcoming health outcomes for women. 
+The average age for having a first child has recently shifted from the early 20s to late 20s. This paper investigates potential factors to research the likelihood of having children at an early age depending on gender, education level, occupation, income, and mental health. Whereas women are more likely to have their first children at earlier stages than men, education, occupation types, and income are other variables that impact individuals to have their first child in later stages of their lives. It is crucial to assess the underlying factors of this changing trend for further application in the labor market and potential upcoming health outcomes for women.
 
 
 </p>
