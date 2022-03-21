@@ -261,7 +261,7 @@ Additionally, besides Canada, the trend has existed for a while in other countri
 # Appendix
 
 
-```{r, QR_code, fig.cap="Coverpage of the supplementary survey", warning=FALSE, fig.height=13, echo=FALSE, message=FALSE}
+```{r, QRcode, fig.cap="Coverpage of the supplementary survey", warning=FALSE, echo=FALSE, message=FALSE}
 
 knitr::include_graphics(here::here("input/survey/QR_code.png"))
 
@@ -269,15 +269,42 @@ knitr::include_graphics(here::here("input/survey/QR_code.png"))
 
 \newpage
 
-```{r, Survey, fig.cap="Screenshots of the supplementary survey", warning=FALSE, echo=FALSE, message=FALSE}
+```{r, s1, fig.cap="Part1: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P1.png"))
+```
+
+```{r, s2, fig.cap="Part2: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P2.png"))
+
+```
+
+```{r, s3, fig.cap="Part3: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P3.png"))
+
+```
+
+```{r, s4, fig.cap="Part4: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P4.png"))
+```
+
+```{r, s5, fig.cap="Part5: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P5.png"))
-knitr::include_graphics(here::here("input/survey/P5.png"))
+```
+
+
+```{r, s6, fig.cap="Part6: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
 knitr::include_graphics(here::here("input/survey/P6.png"))
+```
+
+```{r, s7, fig.cap="Part7: Screenshots of the survey", warning=FALSE, echo=FALSE, message=FALSE}
+
 knitr::include_graphics(here::here("input/survey/P7.png"))
+
 ```
 
 
