@@ -308,6 +308,7 @@ knitr::include_graphics(here::here("input/survey/P7.png"))
 ```
 
 
+\clearpage
 \newpage
 
 
