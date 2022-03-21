@@ -2,9 +2,10 @@
 title: "How Socioeconomic Factors Affect Average Age of First Birth in Canada"
 
 author: 
-  - Sevnur Kulak
   - Dongqi Bi
   - Ivan Li
+  - Sevnur Kulak
+  
 thanks: "Code and data are available at: https://github.com/hellowoshibb/Age_of_First_Birth_Analysis"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "The average age for having a first child has recently shifted from the early 20s to late 20s. This paper investigates potential factors to research the likelihood of having children at an early age depending on gender, education level, occupation, income, and mental health. Whereas women are more likely to have their first children at earlier stages than men, education, occupation types, and income are other variables that impact individuals to have their first child in later stages of their lives. It is crucial to assess the underlying factors of this changing trend for further application in the labor market and potential upcoming health outcomes for women. "
@@ -253,15 +254,22 @@ To proceed with this research further, we can use a regression model for further
 Additionally, besides Canada, the trend has existed for a while in other countries, as mentioned in the Introduction. We can study different countries and compare to Canada in this recent trend for further study. The government can make further implementations in the health or labor market depending on the comparison. That brings other research studies to conduct such as predictions of pregnancy health in the future if the trend of later ages at first child continues to move towards older generations. Since pregnancy is a crucial period of a female body, further assessments can be done by the healthcare system. Similarly, depending on the analysis of education, income, and occupation variables, new policies might be implemented in the labor market for the benefits of employees and employers so that the production and the happiness level are maximized in the country. 
 
 
+
+
+\newpage
+
 # Appendix
 
-```{r, QR_code, fig.cap="Coverpage of the supplementary survey", warning=FALSE}
+
+```{r, QR_code, fig.cap="Coverpage of the supplementary survey", warning=FALSE, fig.height=13, echo=FALSE, message=FALSE}
 
 knitr::include_graphics(here::here("input/survey/QR_code.png"))
 
 ```
 
-```{r, Survey, fig.cap="Screenshots of the supplementary survey", warning=FALSE}
+\newpage
+
+```{r, Survey, fig.cap="Screenshots of the supplementary survey", warning=FALSE, echo=FALSE, message=FALSE}
 knitr::include_graphics(here::here("input/survey/P1.png"))
 knitr::include_graphics(here::here("input/survey/P2.png"))
 knitr::include_graphics(here::here("input/survey/P3.png"))
@@ -272,6 +280,8 @@ knitr::include_graphics(here::here("input/survey/P6.png"))
 knitr::include_graphics(here::here("input/survey/P7.png"))
 ```
 
+
+\newpage
 
 
 # References
