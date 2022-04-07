@@ -2,9 +2,9 @@
 <h2 align="center"> Authors </h2>
 <center>
 
-Sevnur Kulak
+
 Dongqi Bi
-Ivan Li
+
 </center>
 
 
